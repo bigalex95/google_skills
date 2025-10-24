@@ -254,11 +254,15 @@ You can also run these tutorials directly in Google Cloud Shell:
 Contributions are welcome! If you'd like to add a new tutorial or improve existing ones:
 
 1. **Fork the repository**
+
 2. **Create a feature branch**
+
    ```bash
    git checkout -b feature/new-tutorial
    ```
+
 3. **Add your tutorial** following this structure:
+
    ```
    Your Tutorial Name/
    ├── README.md          # Detailed tutorial guide
@@ -266,15 +270,50 @@ Contributions are welcome! If you'd like to add a new tutorial or improve existi
    ├── requirements.txt   # Tutorial-specific dependencies
    └── assets/            # Images, datasets, etc.
    ```
+
 4. **Commit your changes**
+
    ```bash
+   git add .
    git commit -m "Add: Tutorial on [topic]"
    ```
+
 5. **Push to your fork**
+
    ```bash
    git push origin feature/new-tutorial
    ```
-6. **Create a Pull Request**
+
+6. **Merge to master (for maintainers)**
+
+   ```bash
+   # Switch to master branch
+   git checkout master
+
+   # Pull latest changes
+   git pull origin master
+
+   # Merge your feature branch
+   git merge feature/new-tutorial
+
+   # Resolve any conflicts if they occur
+   # Then commit the merge
+
+   # Push to remote master
+   git push origin master
+
+   # Delete the feature branch (optional)
+   git branch -d feature/new-tutorial
+   ```
+
+7. **Create a Pull Request (for contributors)**
+   - Go to your forked repository on GitHub
+   - Click "Compare & pull request"
+   - Fill in the PR description with:
+     - What tutorial you added/changed
+     - Testing you performed
+     - Any special notes
+   - Submit the pull request for review
 
 ### Tutorial Guidelines
 
