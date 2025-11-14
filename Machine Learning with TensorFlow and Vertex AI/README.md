@@ -1,4 +1,4 @@
-# Machine Learning with TensorFlow and Vertex AI
+# [Machine Learning with TensorFlow and Vertex AI](https://www.skills.google/focuses/3391?parent=catalog)
 
 ## GSP273
 
@@ -16,7 +16,7 @@ In this lab you create a Vertex AI Workbench instance on which you develop a Ten
 
 **Vertex AI Workbench** helps users quickly build end-to-end notebook-based workflows through deep integration with data services (like Dataproc, Dataflow, BigQuery, and Dataplex) and Vertex AI. It enables data scientists to connect to Google Cloud data services, analyze datasets, experiment with different modeling techniques, deploy trained models into production, and manage MLOps through the model lifecycle.
 
-This lab uses a set of code samples and scripts developed for *[Data Science on the Google Cloud Platform, 2nd Edition](https://www.oreilly.com/library/view/data-science-on/9781098118945/)* from O'Reilly Media, Inc.
+This lab uses a set of code samples and scripts developed for _[Data Science on the Google Cloud Platform, 2nd Edition](https://www.oreilly.com/library/view/data-science-on/9781098118945/)_ from O'Reilly Media, Inc.
 
 ---
 
@@ -46,6 +46,7 @@ This hands-on lab lets you do the lab activities in a real cloud environment, no
 - Time to complete the lab—remember, once you start, you cannot pause a lab
 
 **Notes:**
+
 - Use an Incognito or private browser window to run this lab to prevent conflicts between your personal account and the student account
 - Use only the student account for this lab. If you use a different Google Cloud account, you may incur charges to that account
 
@@ -54,6 +55,7 @@ This hands-on lab lets you do the lab activities in a real cloud environment, no
 ### How to Start Your Lab and Sign in to the Google Cloud Console
 
 1. Click the **Start Lab** button. If you need to pay for the lab, a dialog opens for you to select your payment method. On the left is the **Lab Details** pane with the following:
+
    - The Open Google Cloud console button
    - Time remaining
    - The temporary credentials that you must use for this lab
@@ -426,15 +428,15 @@ disc.update({
 
 # Cross columns that make sense in combination
 sparse['dep_loc'] = tf.feature_column.crossed_column(
-    [disc['d_dep_airport_lat'], disc['d_dep_airport_lon']], 
+    [disc['d_dep_airport_lat'], disc['d_dep_airport_lon']],
     NBUCKETS * NBUCKETS
 )
 sparse['arr_loc'] = tf.feature_column.crossed_column(
-    [disc['d_arr_airport_lat'], disc['d_arr_airport_lon']], 
+    [disc['d_arr_airport_lat'], disc['d_arr_airport_lon']],
     NBUCKETS * NBUCKETS
 )
 sparse['dep_arr'] = tf.feature_column.crossed_column(
-    [sparse['dep_loc'], sparse['arr_loc']], 
+    [sparse['dep_loc'], sparse['arr_loc']],
     NBUCKETS ** 4
 )
 
@@ -489,18 +491,18 @@ def wide_and_deep_classifier(inputs, linear_feature_columns, dnn_feature_columns
     layers = [int(x) for x in dnn_hidden_units.split(',')]
     for layerno, numnodes in enumerate(layers):
         deep = tf.keras.layers.Dense(
-            numnodes, 
-            activation='relu', 
+            numnodes,
+            activation='relu',
             name=f'dnn_{layerno+1}'
         )(deep)
-    
+
     # Wide part
     wide = tf.keras.layers.DenseFeatures(linear_feature_columns, name='wide_inputs')(inputs)
-    
+
     # Combine wide and deep
     both = tf.keras.layers.concatenate([deep, wide], name='both')
     output = tf.keras.layers.Dense(1, activation='sigmoid', name='pred')(both)
-    
+
     # Create and compile model
     model = tf.keras.Model(inputs, output)
     model.compile(
@@ -545,9 +547,9 @@ else:
 # Create datasets
 train_dataset = read_dataset(training_data_uri, train_batch_size)
 eval_dataset = read_dataset(
-    validation_data_uri, 
-    eval_batch_size, 
-    tf.estimator.ModeKeys.EVAL, 
+    validation_data_uri,
+    eval_batch_size,
+    tf.estimator.ModeKeys.EVAL,
     num_eval_examples
 )
 
@@ -673,6 +675,7 @@ gcloud ai endpoints deploy-model $ENDPOINT_ID \
 ```
 
 **Notes:**
+
 - If you encounter a model building error (e.g., service account permissions), try running the code cell again
 - Enable the Vertex AI API if not enabled
 - This process will take around 15-20 minutes
@@ -903,4 +906,4 @@ gsutil rm -r gs://BUCKET_NAME
 
 - Explore [Vertex AI documentation](https://cloud.google.com/vertex-ai/docs)
 - Learn more about [TensorFlow](https://www.tensorflow.org/)
-- Read *[Data Science on the Google Cloud Platform, 2nd Edition](https://www.oreilly.com/library/view/data-science-on/9781098118945/)*
+- Read _[Data Science on the Google Cloud Platform, 2nd Edition](https://www.oreilly.com/library/view/data-science-on/9781098118945/)_
